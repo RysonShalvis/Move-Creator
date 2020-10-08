@@ -14,21 +14,24 @@ class App extends React.Component {
   }
 
   handleClick(e) {
-    arr.push(e.target.value)
+    
     this.setState({ 
       input: e.target.value,
       counter: this.state.counter + 1
     })
+    if (arr.length < 2) {
+      arr.push(<p key={this.state.counter}>{e.target.value}</p>) 
+     }
   }
 
   render() {
 
     return (
     <div>
-      <AddTrick handleClick={this.handleClick} name="side"/>
-      <AddTrick handleClick={this.handleClick} name="forward"/>
-      <AddTrick handleClick={this.handleClick} name="backward"/>
-      <AddTrick handleClick={this.handleClick} name="spin"/>
+      <AddTrick handleClick={this.handleClick} name="sideflip"/>
+      <AddTrick handleClick={this.handleClick} name="frontflip"/>
+      <AddTrick handleClick={this.handleClick} name="backflip"/>
+      <AddTrick handleClick={this.handleClick} name="180"/>
       <CreatedElements input={arr} counter={this.state.counter}/>
     </div>
     )

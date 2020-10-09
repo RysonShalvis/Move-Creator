@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import AddTrick from './AddTrick';
 import CreatedElements from './createdElements'
+import CombineTricksLogic from './CombineTricksLogic';
 let arr = [];
 class App extends React.Component {
   constructor(props){
@@ -20,7 +21,7 @@ class App extends React.Component {
       counter: this.state.counter + 1
     })
     if (arr.length < 2) {
-      arr.push(<p key={this.state.counter}>{e.target.value}</p>) 
+      arr.push(<p key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
      }
   }
 
@@ -33,6 +34,7 @@ class App extends React.Component {
       <AddTrick handleClick={this.handleClick} name="backflip"/>
       <AddTrick handleClick={this.handleClick} name="180"/>
       <CreatedElements input={arr} counter={this.state.counter}/>
+      <CombineTricksLogic input={arr}/>
     </div>
     )
   }

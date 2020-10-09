@@ -12,12 +12,15 @@ class CombineTricksLogic extends React.Component {
     }
     handleSubmit() {
         let moves = this.props.input;
-        console.log('hello')
+        this.setState({
+            element: moves
+        })
     }
 
     render() {
        return (
        <div>
+           <input type="button" value={this.state.element} />
            <CombineTricks handleSubmit={this.handleSubmit} />
         </div>
        )

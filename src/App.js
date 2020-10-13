@@ -86,7 +86,7 @@ class App extends React.Component {
   render() {
     const allTricks = trickOptions.map(trick => <AddTrick key={trick} handleClick={this.handleClick} name={trick}/>)
     return (
-    <div>
+    <div className="all">
       {allTricks}
       <CreatedElements input={clickedMoves} counter={this.state.counter}/>
       <CreatedMove createdMove={this.state.createdMove} />

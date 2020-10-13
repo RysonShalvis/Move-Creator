@@ -2,12 +2,12 @@ import React from 'react';
 import './App.css';
 import AddTrick from './AddTrick';
 import CreatedElements from './createdElements'
-import CombineTricksLogic from './CombineTricksLogic';
+import CombineTricks from './CombineTricks';
 import { listOfAllTricks } from './listOfAllTricksObject';
+import CreatedMove from './CreatedMove';
 
-console.log(listOfAllTricks);
 let trickOptions = ['sideflip','frontflip','backflip','180'];
-let arr = [];
+let clickedMoves = [];
 let moves = [];
 class App extends React.Component {
   constructor(props){
@@ -15,44 +15,82 @@ class App extends React.Component {
     this.state = {
       input: '',
       counter: 0,
+      element: '',
+      createdMove: ''
     }
     this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange() {
-    if (moves.length === 2) {
-      moves = [];
-      arr = [];
-    }
-    console.log(moves)
-  }
 
   handleClick(e) {
     
     this.setState({ 
       input: e.target.value,
-      counter: this.state.counter + 1
+      counter: this.state.counter + 1,
+      createdMove: ''
     })
-    if (arr.length < 2) {
+    if (clickedMoves.length < 2) {
       moves.push(e.target.value);
-      arr.push(<p key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
+      clickedMoves.push(<p key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
      }
-     if (arr.length === 2) {
-      trickOptions.push(moves)
+    
+  }
+
+  handleSubmit() {
+    this.setState({
+        element: moves
+    });
+    if (clickedMoves.length === 2) {
+
+      let trick = listOfAllTricks.listOfTricks;
+      let copyTrickOptions = [...trickOptions]
+      loopTrickOptions:
+        for(let j = 0; j < copyTrickOptions.length; j++) {
+          for (let i = 0; i < trick.length; i++) {
+          let recipe = trick[i].recipe;
+            if (recipe)  {
+            
+              if (recipe.join('') === moves.join('')) {
+                if (copyTrickOptions[j] === trick[i].name) {
+                  this.setState({
+                    createdMove: `${trick[i].name} has already been created`
+                  });
+                  console.log('already a move');
+                  break loopTrickOptions; 
+                } else if (trickOptions.length - 1 === j && trickOptions[j] !== trick[i].name) {
+                  console.log('Congrats you created a new move');
+                  this.setState({
+                    createdMove: `Congrats, You have created a ${trick[i].name}${trick[i].alias ? `, A.K.A ${trick[i].alias}` : ''}.` //checks if move has alias and will display if it does
+                  });
+                  trickOptions.push(trick[i].name);
+                  break loopTrickOptions; 
+                }
+              }
+            
+            }
+          }
+           if (copyTrickOptions.length - 1 === j ) {
+            console.log('not a trick')
+            this.setState({
+              createdMove: 'Not a trick'
+            });
+          }
+      }
+      
+      moves = [];
+      clickedMoves = [];
     }
   }
 
-  componentDidUpdate() {
-    this.handleChange();
-  }
   render() {
-    const allTricks = trickOptions.map(trick => <AddTrick key={trick} handleChange={this.handleChange} handleClick={this.handleClick} name={trick}/>)
+    const allTricks = trickOptions.map(trick => <AddTrick key={trick} handleClick={this.handleClick} name={trick}/>)
     return (
     <div>
       {allTricks}
-      <CreatedElements input={arr} counter={this.state.counter}/>
-      <CombineTricksLogic input={moves}/>
+      <CreatedElements input={clickedMoves} counter={this.state.counter}/>
+      <CreatedMove createdMove={this.state.createdMove} />
+      <CombineTricks handleSubmit={this.handleSubmit}/>
     </div>
     )
   }

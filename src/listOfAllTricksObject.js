@@ -1,18 +1,18 @@
 export const listOfAllTricks = {
     listOfTricks: [
     {
-      name: 'frontflip',
+      name: 'sideflip',
       alias: false,
       recipe: false,
       
     },
     {
-      name: 'backflip',
+      name: 'frontflip',
       alias: false,
       recipe: false,
     },
     {
-      name: 'sideflip',
+      name: 'backflip',
       alias: false,
       recipe: false,
     },
@@ -22,22 +22,44 @@ export const listOfAllTricks = {
       recipe: false,
     },
     {
-      name: '360',
-      alias: false,
-      recipe: {
-          trickOne: '180',
-          trickTwo: '180'
-      }, //option 1
+      name: 'double sideflip',
+      alias: 'dub side',
+      recipe: ['sideflip','sideflip']
     },
     {
-      name: 'frontflip 180',
-      alias: 'front half',
-      recipe: 'frontflip' + '180', //option 2
+      name: 'sideflip 180',
+      alias: 'side half',
+      recipe: ['sideflip','180'],
+    },
+    {
+      name: '360',
+      alias: false,
+      recipe: ['180','180']
+    },
+    {
+      name: '540',
+      alias: false,
+      recipe: ['180','360'] //two ways to create a 540
+    },
+    {
+      name: '540',
+      alias: false,
+      recipe: ['360','180'] //two ways to create a 540
+    },
+    {
+      name: '720',
+      alias: false,
+      recipe: ['360','360'] 
     },
     {
       name: 'sideflip 360',
       alias: 'side full',
-      recipe: 'sideflip + 360', //option 3
-    }
+      recipe: ['sideflip','360'],
+    },
+    {
+      name: 'sideflip 720',
+      alias: 'side double full',
+      recipe: ['sideflip','720'],
+    },
   ]
 }

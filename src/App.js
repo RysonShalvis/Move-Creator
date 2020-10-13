@@ -16,7 +16,8 @@ class App extends React.Component {
       input: '',
       counter: 0,
       element: '',
-      createdMove: ''
+      createdMove: '',
+      didWin: ''
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -76,10 +77,17 @@ class App extends React.Component {
               createdMove: 'Not a trick'
             });
           }
+          
       }
       
       moves = [];
       clickedMoves = [];
+    }
+    if (trickOptions.length === listOfAllTricks.listOfTricks.length) {
+      this.setState({
+        didWin: 'You have created every move, You win!'
+      })
+      console.log('you have cerated every move')
     }
   }
 
@@ -91,6 +99,7 @@ class App extends React.Component {
       <CreatedElements input={clickedMoves} counter={this.state.counter}/>
       <CreatedMove createdMove={this.state.createdMove} />
       <CombineTricks handleSubmit={this.handleSubmit}/>
+      <h1>{this.state.didWin}</h1>
     </div>
     )
   }

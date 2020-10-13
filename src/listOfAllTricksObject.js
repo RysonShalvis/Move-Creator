@@ -25,7 +25,7 @@ export const listOfAllTricks = {
       name: 'double sideflip',
       alias: 'dub side',
       recipe: ['sideflip','sideflip']
-    },
+    }, 
     {
       name: 'sideflip 180',
       alias: 'side half',
@@ -139,18 +139,18 @@ export const listOfAllTricks = {
     {
       name: 'front half in, backflip out',
       alias: 'front half in',
-      recipe: ['720','sideflip'],
+      recipe: ['frontflip 180','backflip'],
     },
     {
       name: 'sideflip in, backflip out',
       alias: 'side in',
-      recipe: ['720','sideflip'],
+      recipe: ['sideflip 180','backflip'],
     },
     {
       name: 'double backflip',
       alias: 'dub back',
       recipe: ['backflip','backflip'],
-    },
+    }, 
     
  
   ]

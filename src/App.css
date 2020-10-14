@@ -1,0 +1,16 @@
+.add-trick-button {
+    color: blueviolet;
+    margin: auto;
+    height: 50px;
+    background-color: rgb(245, 245, 33);
+    font-size: 25px;
+}
+
+.add-trick-container {
+
+}
+
+.add-trick-button:hover {
+    background-color: blueviolet;
+    color:  rgb(245, 245, 33)
+}

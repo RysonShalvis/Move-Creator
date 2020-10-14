@@ -7,6 +7,7 @@ import { listOfAllTricks } from './listOfAllTricksObject';
 import CreatedMove from './CreatedMove';
 
 let trickOptions = ['sideflip','frontflip','backflip','180'];
+trickOptions = trickOptions.sort();
 let clickedMoves = [];
 let moves = [];
 class App extends React.Component {
@@ -18,7 +19,7 @@ class App extends React.Component {
       element: '',
       createdMove: '',
       didWin: '',
-      howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length
+      howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length - 1
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -62,10 +63,12 @@ class App extends React.Component {
                   break loopTrickOptions; 
                 } else if (trickOptions.length - 1 === j && trickOptions[j] !== trick[i].name) {
                   console.log('Congrats you created a new move');
+                  
                   this.setState({
                     createdMove: `Congrats, You have created a ${trick[i].name}${trick[i].alias ? `, A.K.A ${trick[i].alias}` : ''}.` //checks if move has alias and will display if it does
                   });
                   trickOptions.push(trick[i].name);
+                  trickOptions = trickOptions.sort();
                   break loopTrickOptions; 
                 }
               }
@@ -91,7 +94,7 @@ class App extends React.Component {
       console.log('you have cerated every move')
     }
     this.setState({
-      howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length
+      howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length - 1
     })
   }
 

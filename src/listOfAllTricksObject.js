@@ -151,6 +151,11 @@ export const listOfAllTricks = {
       alias: 'dub back',
       recipe: ['backflip','backflip'],
     }, 
+    {
+      name: 'double frontflip',
+      alias: 'dub front',
+      recipe: ['frontflip','frontflip'],
+    }, 
     
  
   ]

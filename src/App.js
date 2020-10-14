@@ -17,7 +17,8 @@ class App extends React.Component {
       counter: 0,
       element: '',
       createdMove: '',
-      didWin: ''
+      didWin: '',
+      howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -89,6 +90,9 @@ class App extends React.Component {
       })
       console.log('you have cerated every move')
     }
+    this.setState({
+      howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length
+    })
   }
 
   render() {
@@ -100,6 +104,7 @@ class App extends React.Component {
       <CreatedMove createdMove={this.state.createdMove} />
       <CombineTricks handleSubmit={this.handleSubmit}/>
       <h1>{this.state.didWin}</h1>
+      <h3>You have {this.state.howManyTilWin} tricks left to create</h3>
     </div>
     )
   }

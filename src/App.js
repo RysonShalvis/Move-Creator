@@ -5,6 +5,8 @@ import CreatedElements from './createdElements'
 import CombineTricks from './CombineTricks';
 import { listOfAllTricks } from './listOfAllTricksObject';
 import CreatedMove from './CreatedMove';
+import OrignalTricks from './OrignalTricks';
+import AllTricks from './AllTricks';
 
 let trickOptions = ['sideflip','frontflip','backflip','180'];
 trickOptions = trickOptions.sort();
@@ -19,10 +21,13 @@ class App extends React.Component {
       element: '',
       createdMove: '',
       didWin: '',
-      howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length - 1
+      howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length - 1,
+      orginalTricksClicked1: false,
+      orginalTricksClicked2: false,
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleOriginalTricks = this.handleOriginalTricks.bind(this);
   }
 
 
@@ -45,7 +50,10 @@ class App extends React.Component {
         element: moves
     });
     if (clickedMoves.length === 2) {
-
+      this.setState({
+        orginalTricksClicked1: false,
+        orginalTricksClicked2: false
+      })
       let trick = listOfAllTricks.listOfTricks;
       let copyTrickOptions = [...trickOptions]
       loopTrickOptions:
@@ -98,17 +106,39 @@ class App extends React.Component {
     })
   }
 
+  handleOriginalTricks(e) {
+    console.log(e.target.classList[0])
+    if (e.target.classList[0] === 'first') {
+
+      this.setState({
+        orginalTricksClicked1: true
+      })
+    }
+    if (e.target.classList[0] === 'second') {
+
+      this.setState({
+        orginalTricksClicked2: true
+      })
+    }
+  }
+
   render() {
     const allTricks = trickOptions.map(trick => <AddTrick key={trick} handleClick={this.handleClick} name={trick}/>)
     return (
     <div className="all">
       <div className="add-trick-container">
-        {allTricks}
+        <OrignalTricks ogClass="first" handleClick={this.handleOriginalTricks} />
+        <AllTricks ogtrue={this.state.orginalTricksClicked1} allTricks={allTricks}/>
       </div>
-      
-      <CreatedElements input={clickedMoves} counter={this.state.counter}/>
-      <CreatedMove createdMove={this.state.createdMove} />
-      <CombineTricks handleSubmit={this.handleSubmit}/>
+      <div className="add-trick-container">
+        <OrignalTricks ogClass="second" handleClick={this.handleOriginalTricks} />
+        <AllTricks ogtrue={this.state.orginalTricksClicked2} allTricks={allTricks}/>
+      </div>
+        <CreatedElements input={clickedMoves} counter={this.state.counter}/>
+        <CreatedMove createdMove={this.state.createdMove} />
+      <div className="submit-container">
+        <CombineTricks handleSubmit={this.handleSubmit}/>
+      </div>
       <h1>{this.state.didWin}</h1>
       <h3>You have {this.state.howManyTilWin} tricks left to create</h3>
     </div>

@@ -1,4 +1,5 @@
 .add-trick-button {
+   
     color: blueviolet;
     margin: auto;
     height: 50px;
@@ -7,10 +8,24 @@
 }
 
 .add-trick-container {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 0 100px;
 
 }
 
 .add-trick-button:hover {
     background-color: blueviolet;
     color:  rgb(245, 245, 33)
+}
+
+.og-container {
+
+}
+
+.submit-container {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+
 }

@@ -24,6 +24,7 @@ class App extends React.Component {
       howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length - 1,
       orginalTricksClicked1: false,
       orginalTricksClicked2: false,
+      whichOriginalClicked: ''
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,7 +53,8 @@ class App extends React.Component {
     if (clickedMoves.length === 2) {
       this.setState({
         orginalTricksClicked1: false,
-        orginalTricksClicked2: false
+        orginalTricksClicked2: false,
+        
       })
       let trick = listOfAllTricks.listOfTricks;
       let copyTrickOptions = [...trickOptions]
@@ -107,11 +109,14 @@ class App extends React.Component {
   }
 
   handleOriginalTricks(e) {
-    console.log(e.target.classList[0])
+    console.log(e.target)
+    this.setState({
+      whichOriginalClicked: e.target.value
+    })
     if (e.target.classList[0] === 'first') {
 
       this.setState({
-        orginalTricksClicked1: true
+        orginalTricksClicked1: true,
       })
     }
     if (e.target.classList[0] === 'second') {
@@ -123,16 +128,17 @@ class App extends React.Component {
   }
 
   render() {
-    const allTricks = trickOptions.map(trick => <AddTrick key={trick} handleClick={this.handleClick} name={trick}/>)
+    
+    const allTricks = trickOptions.map(trick => <AddTrick  key={trick} base={listOfAllTricks.listOfTricks[listOfAllTricks.listOfTricks.map(trickObject => trickObject.name).indexOf(trick)].base} handleClick={this.handleClick} name={trick}/>)
     return (
     <div className="all">
       <div className="add-trick-container">
         <OrignalTricks ogClass="first" handleClick={this.handleOriginalTricks} />
-        <AllTricks ogtrue={this.state.orginalTricksClicked1} allTricks={allTricks}/>
+        <AllTricks whichClicked={this.state.whichOriginalClicked} ogtrue={this.state.orginalTricksClicked1} allTricks={allTricks}/>
       </div>
       <div className="add-trick-container">
         <OrignalTricks ogClass="second" handleClick={this.handleOriginalTricks} />
-        <AllTricks ogtrue={this.state.orginalTricksClicked2} allTricks={allTricks}/>
+        <AllTricks whichClicked={this.state.whichOriginalClicked} ogtrue={this.state.orginalTricksClicked2} allTricks={allTricks}/>
       </div>
         <CreatedElements input={clickedMoves} counter={this.state.counter}/>
         <CreatedMove createdMove={this.state.createdMove} />

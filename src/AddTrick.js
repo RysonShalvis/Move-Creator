@@ -1,8 +1,10 @@
 import React from 'react';
 
 class AddTrick extends React.Component {
+   
     render() {
-        return <input className="add-trick-button" onClick={this.props.handleClick} type="button" value={this.props.name} />
+        let base = this.props.base;
+        return <input className={`${base} add-trick-button`} onClick={this.props.handleClick} type="button" value={this.props.name} />
     }
 }
 

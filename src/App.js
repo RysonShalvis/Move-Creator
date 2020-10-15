@@ -24,7 +24,8 @@ class App extends React.Component {
       howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length - 1,
       orginalTricksClicked1: false,
       orginalTricksClicked2: false,
-      whichOriginalClicked: ''
+      whichOriginalClicked1: '',
+      whichOriginalClicked2: '',
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -110,19 +111,18 @@ class App extends React.Component {
 
   handleOriginalTricks(e) {
     console.log(e.target)
-    this.setState({
-      whichOriginalClicked: e.target.value
-    })
     if (e.target.classList[0] === 'first') {
 
       this.setState({
         orginalTricksClicked1: true,
+        whichOriginalClicked1: e.target.value
       })
     }
     if (e.target.classList[0] === 'second') {
 
       this.setState({
-        orginalTricksClicked2: true
+        orginalTricksClicked2: true,
+        whichOriginalClicked2: e.target.value
       })
     }
   }
@@ -134,11 +134,11 @@ class App extends React.Component {
     <div className="all">
       <div className="add-trick-container">
         <OrignalTricks ogClass="first" handleClick={this.handleOriginalTricks} />
-        <AllTricks whichClicked={this.state.whichOriginalClicked} ogtrue={this.state.orginalTricksClicked1} allTricks={allTricks}/>
+        <AllTricks whichClicked={this.state.whichOriginalClicked1} ogtrue={this.state.orginalTricksClicked1} allTricks={allTricks}/>
       </div>
       <div className="add-trick-container">
         <OrignalTricks ogClass="second" handleClick={this.handleOriginalTricks} />
-        <AllTricks whichClicked={this.state.whichOriginalClicked} ogtrue={this.state.orginalTricksClicked2} allTricks={allTricks}/>
+        <AllTricks whichClicked={this.state.whichOriginalClicked2} ogtrue={this.state.orginalTricksClicked2} allTricks={allTricks}/>
       </div>
         <CreatedElements input={clickedMoves} counter={this.state.counter}/>
         <CreatedMove createdMove={this.state.createdMove} />

@@ -4,7 +4,6 @@ class AllTricks extends Component {
     render() {
         let target = this.props.whichClicked;
         let allTricks = this.props.allTricks;
-        console.log(allTricks[0].props.base)
         let side = allTricks.filter(trick => trick.props.base === 'sideflip');
         let back = allTricks.filter(trick => trick.props.base === 'backflip');
         let front = allTricks.filter(trick => trick.props.base === 'frontflip');

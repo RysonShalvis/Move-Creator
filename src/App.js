@@ -110,7 +110,6 @@ class App extends React.Component {
   }
 
   handleOriginalTricks(e) {
-    console.log(e.target)
     if (e.target.classList[0] === 'first') {
 
       this.setState({

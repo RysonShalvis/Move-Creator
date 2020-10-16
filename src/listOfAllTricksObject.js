@@ -33,7 +33,7 @@ export const listOfAllTricks = {
     }, 
     {
       name: 'sideflip 180',
-      base: 'sidelip',
+      base: 'sideflip',
       alias: 'side half',
       recipe: ['sideflip','180'],
     },

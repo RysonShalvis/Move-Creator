@@ -6,6 +6,7 @@ import { listOfAllTricks } from './listOfAllTricksObject';
 import CreatedMove from './CreatedMove';
 import OrignalTricks from './OrignalTricks';
 import AllTricks from './AllTricks';
+import MovesLeft from './MovesLeft'
 
 let trickOptions = ['sideflip','frontflip','backflip','180'];
 trickOptions = trickOptions.sort();
@@ -137,8 +138,7 @@ class App extends React.Component {
       </div>
         <CreatedElements input={clickedMoves} counter={this.state.counter}/>
         <CreatedMove createdMove={this.state.createdMove} />
-      <h1>{this.state.didWin}</h1>
-      <h3>You have {this.state.howManyTilWin} tricks left to create</h3>
+        <MovesLeft didWin={this.state.didWin} tilWin={this.state.howManyTilWin} />
     </div>
     )
   }

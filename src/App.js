@@ -26,6 +26,7 @@ class App extends React.Component {
       orginalTricksClicked2: false,
       whichOriginalClicked1: '',
       whichOriginalClicked2: '',
+      allTricks: ''
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleOriginalTricks = this.handleOriginalTricks.bind(this);
@@ -37,7 +38,7 @@ class App extends React.Component {
     this.setState({ 
       input: e.target.value,
       counter: this.state.counter + 1,
-      createdMove: ''
+      createdMove: '',
     })
     if (clickedMoves.length < 2) {
       moves.push(e.target.value);
@@ -108,20 +109,84 @@ class App extends React.Component {
 
   handleOriginalTricks(e) {
     if (e.target.classList[0] === 'first') {
-
-      this.setState({
-        orginalTricksClicked1: true,
-        whichOriginalClicked1: e.target.value
-      })
+      if (e.target.value === '180' && this.whichOneClicked() === '180' && this.state.orginalTricksClicked1) {
+        this.setState({
+          orginalTricksClicked1: false
+        })
+      } else if (e.target.value === 'sideflip' && this.whichOneClicked() === 'sideflip' && this.state.orginalTricksClicked1) {
+        this.setState({
+          orginalTricksClicked1: false
+        })
+      } else if (e.target.value === 'frontflip' && this.whichOneClicked() === 'frontflip' && this.state.orginalTricksClicked1) {
+        this.setState({
+          orginalTricksClicked1: false
+        })
+      } else if (e.target.value === 'backflip' && this.whichOneClicked() === 'backflip' && this.state.orginalTricksClicked1) {
+        this.setState({
+          orginalTricksClicked1: false
+        })
+      } else {
+        this.setState({
+          orginalTricksClicked1: true,
+          whichOriginalClicked1: e.target.value
+        })
+      }
     }
     if (e.target.classList[0] === 'second') {
-
-      this.setState({
-        orginalTricksClicked2: true,
-        whichOriginalClicked2: e.target.value
-      })
+      if (e.target.value === '180' && this.whichOneClicked2() === '180' && this.state.orginalTricksClicked2) {
+        this.setState({
+          orginalTricksClicked2: false
+        })
+      } else if (e.target.value === 'sideflip' && this.whichOneClicked2() === 'sideflip' && this.state.orginalTricksClicked2) {
+        this.setState({
+          orginalTricksClicked2: false
+        })
+      } else if (e.target.value === 'frontflip' && this.whichOneClicked2() === 'frontflip' && this.state.orginalTricksClicked2) {
+        this.setState({
+          orginalTricksClicked2: false
+        })
+      } else if (e.target.value === 'backflip' && this.whichOneClicked2() === 'backflip' && this.state.orginalTricksClicked2) {
+        this.setState({
+          orginalTricksClicked2: false
+        })
+      } else {
+        this.setState({
+          orginalTricksClicked2: true,
+          whichOriginalClicked2: e.target.value
+        })
+      }
     }
   }
+
+  whichOneClicked() {
+    let target = this.state.whichOriginalClicked1;
+    if (target === 'backflip') {
+        return 'backflip'
+    } else if (target === 'sideflip') {
+        return 'sideflip'
+    } else if (target === 'frontflip') {
+        return 'frontflip'
+    } else if (target === '180') {
+        return '180'
+    } else {
+        return ['']
+    }
+}
+
+whichOneClicked2() {
+  let target = this.state.whichOriginalClicked2;
+  if (target === 'backflip') {
+      return 'backflip'
+  } else if (target === 'sideflip') {
+      return 'sideflip'
+  } else if (target === 'frontflip') {
+      return 'frontflip'
+  } else if (target === '180') {
+      return '180'
+  } else {
+      return ['']
+  }
+}
 
   render() {
     

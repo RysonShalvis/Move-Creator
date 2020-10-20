@@ -1,10 +1,12 @@
-.add-trick-button {
-   
+/*.add-trick-button {
+    white-space: pre;
     color: blueviolet;
     margin: auto;
-    height: 50px;
+
+    width: 200px;
     background-color: rgb(245, 245, 33);
     font-size: 25px;
+    overflow: scroll;
 }
 
 .add-trick-container {
@@ -48,4 +50,43 @@
 .one-eighty {
     position: relative;
     right: 149px;
+}
+*/
+
+
+.og-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-trick-button {
+    border-style: solid;
+    border-color: rgb(14, 126, 255);
+    border-width: 8px;
+    background-color: rgb(79, 201, 241);
+    color: white;
+    font-weight: bold;
+    width: 100px;
+    height: 100px;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.button-container {
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.add-trick-container-one {
+ 
+}
+
+.add-trick-container-two {
+    
+}
+
+.add-trick-container {
+    display: flex;
+    flex-direction: column;
 }

@@ -94,7 +94,7 @@ class App extends React.Component {
     moves = [];
     clickedMoves = [];
   }
-  if (trickOptions.length === listOfAllTricks.listOfTricks.length) {
+  if (trickOptions.length === listOfAllTricks.listOfTricks.length - 1) {
     this.setState({
       didWin: 'You have created every move, You win!'
     })
@@ -160,50 +160,34 @@ class App extends React.Component {
 
   whichOneClicked() {
     let target = this.state.whichOriginalClicked1;
-    if (target === 'backflip') {
-        return 'backflip'
-    } else if (target === 'sideflip') {
-        return 'sideflip'
-    } else if (target === 'frontflip') {
-        return 'frontflip'
-    } else if (target === '180') {
-        return '180'
-    } else {
-        return ['']
-    }
+    return target;
 }
 
 whichOneClicked2() {
   let target = this.state.whichOriginalClicked2;
-  if (target === 'backflip') {
-      return 'backflip'
-  } else if (target === 'sideflip') {
-      return 'sideflip'
-  } else if (target === 'frontflip') {
-      return 'frontflip'
-  } else if (target === '180') {
-      return '180'
-  } else {
-      return ['']
-  }
+  return target;
 }
 
   render() {
     
-    const allTricks = trickOptions.map(trick => <AddTrick  key={trick} base={listOfAllTricks.listOfTricks[listOfAllTricks.listOfTricks.map(trickObject => trickObject.name).indexOf(trick)].base} handleClick={this.handleClick} name={trick}/>)
+    const allTricks = trickOptions.map(trick => <AddTrick className="add-trick"  key={trick} base={listOfAllTricks.listOfTricks[listOfAllTricks.listOfTricks.map(trickObject => trickObject.name).indexOf(trick)].base} handleClick={this.handleClick} name={trick}/>)
     return (
     <div className="all">
-      <div className="add-trick-container">
-        <OrignalTricks ogClass="first" handleClick={this.handleOriginalTricks} />
-        <AllTricks whichClicked={this.state.whichOriginalClicked1} ogtrue={this.state.orginalTricksClicked1} allTricks={allTricks}/>
-      </div>
-      <div className="add-trick-container">
-        <OrignalTricks ogClass="second" handleClick={this.handleOriginalTricks} />
-        <AllTricks whichClicked={this.state.whichOriginalClicked2} ogtrue={this.state.orginalTricksClicked2} allTricks={allTricks}/>
-      </div>
-        <CreatedElements input={clickedMoves} counter={this.state.counter}/>
+       <CreatedElements input={clickedMoves} counter={this.state.counter}/>
         <CreatedMove createdMove={this.state.createdMove} />
         <MovesLeft didWin={this.state.didWin} tilWin={this.state.howManyTilWin} />
+      <div className="button-container">
+        <div className="add-trick-container-one">
+          <OrignalTricks ogClass="first" handleClick={this.handleOriginalTricks} />
+        </div>
+          <AllTricks whichClicked={this.state.whichOriginalClicked1} ogtrue={this.state.orginalTricksClicked1} allTricks={allTricks}/>
+          <AllTricks whichClicked={this.state.whichOriginalClicked2} ogtrue={this.state.orginalTricksClicked2} allTricks={allTricks}/>
+        <div className="add-trick-container-two">
+          <OrignalTricks ogClass="second" handleClick={this.handleOriginalTricks} />
+      </div>
+         
+    </div>
+       
     </div>
     )
   }

@@ -26,7 +26,8 @@ class App extends React.Component {
       orginalTricksClicked2: false,
       whichOriginalClicked1: '',
       whichOriginalClicked2: '',
-      allTricks: ''
+      allTricks: '',
+      eventTarget: ''
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleOriginalTricks = this.handleOriginalTricks.bind(this);
@@ -108,6 +109,7 @@ class App extends React.Component {
   
 
   handleOriginalTricks(e) {
+    this.setState({eventTarget: e.target.classList[0]})
     if (e.target.classList[0] === 'first') {
       if (e.target.value === '180' && this.whichOneClicked() === '180' && this.state.orginalTricksClicked1) {
         this.setState({
@@ -170,7 +172,17 @@ whichOneClicked2() {
 
   render() {
     
-    const allTricks = trickOptions.map(trick => <AddTrick className="add-trick"  key={trick} base={listOfAllTricks.listOfTricks[listOfAllTricks.listOfTricks.map(trickObject => trickObject.name).indexOf(trick)].base} handleClick={this.handleClick} name={trick}/>)
+    const allTricks = trickOptions.map(trick => {
+       return (
+          <AddTrick 
+            eventTarget={this.state.eventTarget}
+            className="add-trick"  
+            key={trick} base={listOfAllTricks.listOfTricks[listOfAllTricks.listOfTricks.map(trickObject => trickObject.name).indexOf(trick)].base} 
+            handleClick={this.handleClick} 
+            name={trick}/>
+          )
+        }
+      )
     return (
     <div className="all">
        <CreatedElements input={clickedMoves} counter={this.state.counter}/>

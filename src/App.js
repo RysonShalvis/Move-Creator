@@ -98,9 +98,8 @@ class App extends React.Component {
         }
         
     }
-    
-    moves = [];
-    clickedMoves = [0,'+',0];
+      moves = [];
+      clickedMoves = [0,<p>+</p>,0];
   }
   if (trickOptions.length === listOfAllTricks.listOfTricks.length - 1) {
     this.setState({

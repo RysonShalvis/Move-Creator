@@ -110,9 +110,9 @@ export const listOfAllTricks = {
       recipe: ['backflip','720'],
     },
     {
-      name: 'arabian',
+      name: 'dark arabian',
       base: '180',
-      alias: false, //not sure if alias
+      alias: 'spiderman flip', 
       recipe: ['180','backflip'],
     },
     {
@@ -128,9 +128,9 @@ export const listOfAllTricks = {
       recipe: ['720','backflip'],
     },
     {
-      name: 'dark arabian',
+      name: 'arabian',
       base: '180',
-      alias: 'spiderman flip',
+      alias: false,
       recipe: ['180','frontflip'],
     },
     {

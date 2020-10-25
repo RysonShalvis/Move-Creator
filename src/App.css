@@ -59,7 +59,7 @@
     flex-direction: column;
 }
 
-.add-trick-button {
+.og-trick-button {
     border-style: solid;
     border-color: rgb(14, 126, 255);
     border-width: 8px;
@@ -67,6 +67,19 @@
     color: white;
     font-weight: bold;
     width: 100px;
+    height: 100px;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.add-trick-button {
+    border-style: solid;
+    border-color: rgb(14, 126, 255);
+    border-width: 8px;
+    background-color: rgb(79, 201, 241);
+    color: white;
+    font-weight: bold;
+    width: 250px;
     height: 100px;
     font-size: 20px;
     margin-bottom: 50px;

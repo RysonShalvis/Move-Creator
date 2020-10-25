@@ -9,8 +9,8 @@ import AllTricks from './AllTricks';
 import MovesLeft from './MovesLeft'
 
 let trickOptions = ['sideflip','frontflip','backflip','180'];
-trickOptions = trickOptions.sort();
-let clickedMoves = [0,<p>+</p>,0];
+trickOptions = trickOptions
+let clickedMoves = [0,<p style={{display: 'inline'}}>+</p>,0];
 let moves = [];
 class App extends React.Component {
   constructor(props){
@@ -46,10 +46,10 @@ class App extends React.Component {
       if (this.state.eventTarget === 'first') {
         console.log(e.target.value)
         moves.splice(0,1,e.target.value)
-        clickedMoves.splice(0,1,<p key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
+        clickedMoves.splice(0,1,<p style={{display: 'inline'}} key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
       } else if (this.state.eventTarget === 'second') {
         moves.splice(1,1,e.target.value);
-        clickedMoves.splice(2,1,<p key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
+        clickedMoves.splice(2,1,<p style={{display: 'inline'}} key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
       }
      }
      this.setState({
@@ -98,8 +98,9 @@ class App extends React.Component {
         }
         
     }
-      moves = [];
-      clickedMoves = [0,<p>+</p>,0];
+
+     
+    
   }
   if (trickOptions.length === listOfAllTricks.listOfTricks.length - 1) {
     this.setState({
@@ -115,6 +116,10 @@ class App extends React.Component {
   
 
   handleOriginalTricks(e) {
+    if (clickedMoves[0] !== 0 && clickedMoves[2] !== 0) {
+      moves = [];
+      clickedMoves = [0,<p style={{display: 'inline'}}>+</p>,0];
+    }
     this.setState({eventTarget: e.target.classList[0]})
     if (e.target.classList[0] === 'first') {
       if (e.target.value === '180' && this.whichOneClicked() === '180' && this.state.orginalTricksClicked1) {
@@ -204,9 +209,9 @@ whichOneClicked2() {
         <div className="add-trick-container-two">
           <h1>Second Trick</h1>
           <OrignalTricks ogClass="second" handleClick={this.handleOriginalTricks} />
-      </div>
+        </div>
          
-    </div>
+      </div>
        
     </div>
     )

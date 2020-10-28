@@ -7,9 +7,7 @@ class AddTrick extends React.Component {
         if (base === '180') {
             base = 'one-eighty'
         }
-        console.log(<input id={this.props.eventTarget} className={`${base} add-trick-button`} onClick={this.props.handleClick} type="button" value={this.props.name} />
-        )
-        return <input id={this.props.eventTarget} className={`${base} add-trick-button`} onClick={this.props.handleClick} type="button" value={this.props.name} />
+        return <input id={this.props.firstOrSecond} className={`${base} add-trick-button`} onClick={this.props.handleClick} type="button" value={this.props.name} />
     }
 }
 

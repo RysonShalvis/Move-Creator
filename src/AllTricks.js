@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
+import { listOfAllTricks } from './listOfAllTricksObject';
+import AddTrick from './AddTrick';
 
 class AllTricks extends Component {
     render() {
+        let trickOptions = this.props.trickOptions
+        const allTricks = trickOptions.map(trick => {
+            return (
+               <AddTrick
+                 eventTarget={this.props.eventTarget}
+                 className="add-trick"  
+                 key={trick} 
+                 base={listOfAllTricks.listOfTricks[listOfAllTricks.listOfTricks.map(trickObject => trickObject.name).indexOf(trick)].base} 
+                 handleClick={this.props.handleClick}
+                 firstOrSecond={this.props.firstOrSecond} 
+                 name={trick}/>
+               )
+             }
+           );
         let target = this.props.whichClicked;
-        let allTricks = this.props.allTricks;
         let side = allTricks.filter(trick => trick.props.base === 'sideflip');
         let back = allTricks.filter(trick => trick.props.base === 'backflip');
         let front = allTricks.filter(trick => trick.props.base === 'frontflip');
         let oneEighty = allTricks.filter(trick => trick.props.base === '180');
+        
         function whichOneClicked() {
             if (target === 'backflip') {
                 return back

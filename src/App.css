@@ -64,7 +64,7 @@
     border-color: rgb(14, 126, 255);
     border-width: 8px;
     background-color: rgb(79, 201, 241);
-    color: white;
+    
     font-weight: bold;
     width: 100px;
     height: 100px;
@@ -85,6 +85,11 @@
     margin-bottom: 50px;
 }
 
+.add-trick-button:hover, .og-trick-button:hover {
+    border-color: rgb(79, 201, 241);
+    background-color: rgb(14, 126, 255);
+}
+
 .button-container {
     display: flex;
     margin: auto;
@@ -102,4 +107,18 @@
 .add-trick-container {
     display: flex;
     flex-direction: column;
+}
+
+.text-container {
+    text-align: center;
+    color: rgb(14, 126, 255);
+}
+.first-clicked,.second-clicked {
+    color: red;
+    height: 200px;
+    width: 200px;
+}
+
+.first-not-clicked, .second-not-clicked {
+    color: white;
 }

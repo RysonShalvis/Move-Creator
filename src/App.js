@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import AddTrick from './AddTrick';
 import CreatedElements from './createdElements'
 import { listOfAllTricks } from './listOfAllTricksObject';
 import CreatedMove from './CreatedMove';
@@ -9,9 +8,8 @@ import AllTricks from './AllTricks';
 import MovesLeft from './MovesLeft'
 
 let trickOptions = ['sideflip','frontflip','backflip','180'];
-trickOptions = trickOptions
-let clickedMoves = [0,<p style={{display: 'inline'}}>+</p>,0];
-let moves = [];
+let clickedMoves = ['?',<p style={{display: 'inline'}}> + </p>,'?'];
+let moves = [0,0];
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -28,6 +26,10 @@ class App extends React.Component {
       whichOriginalClicked2: '',
       allTricks: '',
       eventTarget: '',
+      ogValue1: '',
+      ogValue2: '',
+      ogClassList1: '',
+      ogClassList2: ''
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleOriginalTricks = this.handleOriginalTricks.bind(this);
@@ -41,21 +43,23 @@ class App extends React.Component {
       counter: this.state.counter + 1,
       createdMove: '',
     })
-    if (clickedMoves[0] === 0 || clickedMoves[2] === 0) {
+    if (clickedMoves[0] === '?' || clickedMoves[2] === '?') {
 
-      if (this.state.eventTarget === 'first') {
-        console.log(e.target.value)
+      console.log(e.target.id)
+      if (e.target.id === 'first') {
         moves.splice(0,1,e.target.value)
         clickedMoves.splice(0,1,<p style={{display: 'inline'}} key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
-      } else if (this.state.eventTarget === 'second') {
+        
+      } else if (e.target.id === 'second') {
         moves.splice(1,1,e.target.value);
+        
         clickedMoves.splice(2,1,<p style={{display: 'inline'}} key={this.state.counter} id={`move${this.state.counter}`}>{e.target.value}</p>) 
       }
      }
      this.setState({
       element: moves
   });
-  if (clickedMoves[0] !== 0 && clickedMoves[2] !== 0) {
+  if (clickedMoves[0] !== '?' && clickedMoves[2] !== '?') {
     this.setState({
       orginalTricksClicked1: false,
       orginalTricksClicked2: false,
@@ -111,14 +115,23 @@ class App extends React.Component {
   this.setState({
     howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length - 1
   })
+  console.log(moves)
   }
 
   
 
   handleOriginalTricks(e) {
-    if (clickedMoves[0] !== 0 && clickedMoves[2] !== 0) {
-      moves = [];
-      clickedMoves = [0,<p style={{display: 'inline'}}>+</p>,0];
+    console.log(this.state.ogClassList1,);
+    console.log(this.state.ogValue1);
+    if (e.target.classList[0] === 'first') {
+      this.setState({ogClassList1: e.target.classList, ogValue1: e.target.value})
+    } 
+    else if (e.target.classList[0] === 'second') {
+      this.setState({ogClassList2: e.target.classList, ogValue2: e.target.value})
+    }
+    if (clickedMoves[0] !== '?' && clickedMoves[2] !== '?') {
+      moves = [0,0];
+      clickedMoves = ['?',<p style={{display: 'inline'}}>+</p>,'?'];
     }
     this.setState({eventTarget: e.target.classList[0]})
     if (e.target.classList[0] === 'first') {
@@ -183,32 +196,33 @@ whichOneClicked2() {
 
   render() {
     
-    const allTricks = trickOptions.map(trick => {
-       return (
-          <AddTrick
-            eventTarget={this.state.eventTarget}
-            className="add-trick"  
-            key={trick} base={listOfAllTricks.listOfTricks[listOfAllTricks.listOfTricks.map(trickObject => trickObject.name).indexOf(trick)].base} 
-            handleClick={this.handleClick} 
-            name={trick}/>
-          )
-        }
-      )
     return (
     <div className="all">
+      <div className="text-container">
        <CreatedElements input={clickedMoves} counter={this.state.counter}/>
         <CreatedMove createdMove={this.state.createdMove} />
         <MovesLeft didWin={this.state.didWin} tilWin={this.state.howManyTilWin} />
+      </div>
       <div className="button-container">
         <div className="add-trick-container-one">
           <h1>First Trick</h1>
-          <OrignalTricks ogClass="first" handleClick={this.handleOriginalTricks} />
+          <OrignalTricks classList1={this.state.ogClassList1} ogValue1={this.state.ogValue1} ogClass1="first" ogClass="first" handleClick={this.handleOriginalTricks} eventTarget={this.state.eventTarget} />
         </div>
-          <AllTricks whichClicked={this.state.whichOriginalClicked1} ogtrue={this.state.orginalTricksClicked1} allTricks={allTricks}/>
-          <AllTricks whichClicked={this.state.whichOriginalClicked2} ogtrue={this.state.orginalTricksClicked2} allTricks={allTricks}/>
+          <AllTricks 
+            whichClicked={this.state.whichOriginalClicked1} 
+            ogtrue={this.state.orginalTricksClicked1} 
+            handleClick={this.handleClick}
+            trickOptions={trickOptions}
+            firstOrSecond="first"/>
+          <AllTricks 
+            whichClicked={this.state.whichOriginalClicked2} 
+            ogtrue={this.state.orginalTricksClicked2} 
+            handleClick={this.handleClick}
+            trickOptions={trickOptions}
+            firstOrSecond="second"/>
         <div className="add-trick-container-two">
           <h1>Second Trick</h1>
-          <OrignalTricks ogClass="second" handleClick={this.handleOriginalTricks} />
+          <OrignalTricks classList2={this.state.ogClassList2} ogValue2={this.state.ogValue2} ogClass="second" handleClick={this.handleOriginalTricks} eventTarget={this.state.eventTarget} />
         </div>
          
       </div>

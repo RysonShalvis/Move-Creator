@@ -24,12 +24,16 @@ class App extends React.Component {
       orginalTricksClicked2: false,
       whichOriginalClicked1: '',
       whichOriginalClicked2: '',
-      allTricks: '',
-      eventTarget: '',
       ogValue1: '',
       ogValue2: '',
-      ogClassList1: '',
-      ogClassList2: ''
+      oneEightyClassName1: 'first-not-clicked',
+      sideClassName1: 'first-not-clicked',
+      frontClassName1: 'first-not-clicked',
+      backClassName1: 'first-not-clicked',
+      sideClassName2: 'first-not-clicked',
+      frontClassName2: 'first-not-clicked',
+      backClassName2: 'first-not-clicked',
+      oneEightyClassName2: 'first-not-clicked',
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleOriginalTricks = this.handleOriginalTricks.bind(this);
@@ -121,19 +125,26 @@ class App extends React.Component {
   
 
   handleOriginalTricks(e) {
-    console.log(this.state.ogClassList1,);
     console.log(this.state.ogValue1);
     if (e.target.classList[0] === 'first') {
-      this.setState({ogClassList1: e.target.classList, ogValue1: e.target.value})
+      e.target.value === 'sideflip' && this.state.sideClassName1 === 'first-not-clicked' ? this.setState({sideClassName1: 'first-clicked'}) : this.setState({sideClassName1: 'first-not-clicked'});
+      e.target.value === 'frontflip' && this.state.frontClassName1 === 'first-not-clicked' ? this.setState({frontClassName1: 'first-clicked'}) : this.setState({frontClassName1: 'first-not-clicked'});
+      e.target.value === 'backflip' && this.state.backClassName1 === 'first-not-clicked' ? this.setState({backClassName1: 'first-clicked'}) : this.setState({backClassName1: 'first-not-clicked'});
+      e.target.value === '180' && this.state.oneEightyClassName1 === 'first-not-clicked' ? this.setState({oneEightyClassName1: 'first-clicked'}) : this.setState({oneEightyClassName1: 'first-not-clicked'});
+      this.setState({ogValue1: e.target.value})
     } 
     else if (e.target.classList[0] === 'second') {
-      this.setState({ogClassList2: e.target.classList, ogValue2: e.target.value})
+      e.target.value === 'sideflip' && this.state.sideClassName2 === 'first-not-clicked' ? this.setState({sideClassName2: 'first-clicked'}) : this.setState({sideClassName2: 'first-not-clicked'});
+      e.target.value === 'frontflip' && this.state.frontClassName2 === 'first-not-clicked' ? this.setState({frontClassName2: 'first-clicked'}) : this.setState({frontClassName2: 'first-not-clicked'});
+      e.target.value === 'backflip' && this.state.backClassName2 === 'first-not-clicked' ? this.setState({backClassName2: 'first-clicked'}) : this.setState({backClassName2: 'first-not-clicked'});
+      e.target.value === '180' && this.state.oneEightyClassName2 === 'first-not-clicked' ? this.setState({oneEightyClassName2: 'first-clicked'}) : this.setState({oneEightyClassName2: 'first-not-clicked'});
+
+      this.setState({ogValue2: e.target.value})
     }
     if (clickedMoves[0] !== '?' && clickedMoves[2] !== '?') {
       moves = [0,0];
       clickedMoves = ['?',<p style={{display: 'inline'}}>+</p>,'?'];
     }
-    this.setState({eventTarget: e.target.classList[0]})
     if (e.target.classList[0] === 'first') {
       if (e.target.value === '180' && this.whichOneClicked() === '180' && this.state.orginalTricksClicked1) {
         this.setState({
@@ -206,7 +217,14 @@ whichOneClicked2() {
       <div className="button-container">
         <div className="add-trick-container-one">
           <h1>First Trick</h1>
-          <OrignalTricks classList1={this.state.ogClassList1} ogValue1={this.state.ogValue1} ogClass1="first" ogClass="first" handleClick={this.handleOriginalTricks} eventTarget={this.state.eventTarget} />
+          <OrignalTricks 
+            sideClassName={this.state.sideClassName1} 
+            frontClassName={this.state.frontClassName1} 
+            backClassName={this.state.backClassName1} 
+            oneEightyClassName={this.state.oneEightyClassName1}  
+            ogClass="first" 
+            handleClick={this.handleOriginalTricks} 
+             />
         </div>
           <AllTricks 
             whichClicked={this.state.whichOriginalClicked1} 
@@ -222,7 +240,13 @@ whichOneClicked2() {
             firstOrSecond="second"/>
         <div className="add-trick-container-two">
           <h1>Second Trick</h1>
-          <OrignalTricks classList2={this.state.ogClassList2} ogValue2={this.state.ogValue2} ogClass="second" handleClick={this.handleOriginalTricks} eventTarget={this.state.eventTarget} />
+          <OrignalTricks 
+            sideClassName={this.state.sideClassName2} 
+            frontClassName={this.state.frontClassName2} 
+            backClassName={this.state.backClassName2} 
+            oneEightyClassName={this.state.oneEightyClassName2}   
+            ogClass="second" 
+            handleClick={this.handleOriginalTricks} />
         </div>
          
       </div>

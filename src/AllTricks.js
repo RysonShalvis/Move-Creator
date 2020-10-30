@@ -18,6 +18,7 @@ class AllTricks extends Component {
                )
              }
            );
+           let firstOrSecond = this.props.firstOrSecond;
         let target = this.props.whichClicked;
         let side = allTricks.filter(trick => trick.props.base === 'sideflip');
         let back = allTricks.filter(trick => trick.props.base === 'backflip');
@@ -37,9 +38,19 @@ class AllTricks extends Component {
                 return ''
             }
         }
+        function which() {
+            return (
+                <div className="add-trick-container">
+                    <h2>{firstOrSecond} Trick</h2>
+                    {whichOneClicked()}
+                </div>
+
+            )
+        }
         return (
             <div className="add-trick-container">
-                {this.props.ogtrue ? whichOneClicked() : ''}
+                
+                {this.props.ogtrue ? which()  : ''}
             </div>
         );
     }

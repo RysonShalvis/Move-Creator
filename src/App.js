@@ -227,7 +227,7 @@ whichOneClicked2() {
       </div>
       <div className="button-container">
         <div className="add-trick-container-one">
-          <h1>First Trick</h1>
+          <h1>Trick Type</h1>
           <OrignalTricks 
             sideClassName={this.state.sideClassName1} 
             frontClassName={this.state.frontClassName1} 
@@ -250,7 +250,7 @@ whichOneClicked2() {
             trickOptions={trickOptions}
             firstOrSecond="second"/>
         <div className="add-trick-container-two">
-          <h1>Second Trick</h1>
+          <h1>Trick Type</h1>
           <OrignalTricks 
             sideClassName={this.state.sideClassName2} 
             frontClassName={this.state.frontClassName2} 

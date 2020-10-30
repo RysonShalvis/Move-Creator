@@ -119,7 +119,18 @@ class App extends React.Component {
   this.setState({
     howManyTilWin: listOfAllTricks.listOfTricks.length - trickOptions.length - 1
   })
-  console.log(moves)
+  if (clickedMoves[0] !== '?' && clickedMoves[2] !== '?') {
+    this.setState({
+      oneEightyClassName1: 'first-not-clicked',
+      sideClassName1: 'first-not-clicked',
+      frontClassName1: 'first-not-clicked',
+      backClassName1: 'first-not-clicked',
+      sideClassName2: 'first-not-clicked',
+      frontClassName2: 'first-not-clicked',
+      backClassName2: 'first-not-clicked',
+      oneEightyClassName2: 'first-not-clicked',
+    })
+  }
   }
 
   

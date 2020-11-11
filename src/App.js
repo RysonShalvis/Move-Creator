@@ -181,19 +181,19 @@ class App extends React.Component {
       }
     }
     if (e.target.classList[0] === 'second') {
-      if (e.target.value === '180' && this.state.orginalTricksClicked2 === '180' && this.state.orginalTricksClicked2) {
+      if (e.target.value === '180' && this.state.whichOriginalClicked2 === '180' && this.state.orginalTricksClicked2) {
         this.setState({
           orginalTricksClicked2: false
         })
-      } else if (e.target.value === 'sideflip' && this.state.orginalTricksClicked2 === 'sideflip' && this.state.orginalTricksClicked2) {
+      } else if (e.target.value === 'sideflip' && this.state.whichOriginalClicked2 === 'sideflip' && this.state.orginalTricksClicked2) {
         this.setState({
           orginalTricksClicked2: false
         })
-      } else if (e.target.value === 'frontflip' && this.state.orginalTricksClicked2 === 'frontflip' && this.state.orginalTricksClicked2) {
+      } else if (e.target.value === 'frontflip' && this.state.whichOriginalClicked2 === 'frontflip' && this.state.orginalTricksClicked2) {
         this.setState({
           orginalTricksClicked2: false
         })
-      } else if (e.target.value === 'backflip' && this.state.orginalTricksClicked2 === 'backflip' && this.state.orginalTricksClicked2) {
+      } else if (e.target.value === 'backflip' && this.state.whichOriginalClicked2 === 'backflip' && this.state.orginalTricksClicked2) {
         this.setState({
           orginalTricksClicked2: false
         })
